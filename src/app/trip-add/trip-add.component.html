@@ -1,0 +1,51 @@
+<div class="form-container">
+    <h2>Add Trip</h2>
+    <form [formGroup]="tripAddForm">
+      <div class="input-label-container">
+        <label for="name">Trip Name:</label>
+        <input id="name" type="text" formControlName="tripName" />
+      </div>
+    
+      <div class="input-label-container">
+        <label for="destination">Destination:</label>
+        <input id="destination" type="text" formControlName="tripDestination" />
+      </div>
+    
+      <div class="input-label-container">
+        <label for="startDate">Start Date:</label>
+        <input id="startDate" type="date" formControlName="tripStartDate" />
+      </div>
+    
+      <div class="input-label-container">
+        <label for="endDate">End Date:</label>
+        <input id="endDate" type="date" formControlName="tripEndDate" />
+      </div>
+    
+      <div class="input-label-container">
+        <label for="maxSeats">Available Seats:</label>
+        <input id="maxSeats" type="text" formControlName="tripMaxSeats" />
+      </div>
+    
+      <div class="input-label-container">
+        <label for="price">Price:</label>
+        <input id="price" type="text" formControlName="tripPrice" />
+      </div>
+    
+      <div class="input-label-container">
+        <label for="shortDesc">Description:</label>
+        <input id="shortDesc" type="text" formControlName="tripShortDesc" />
+      </div>
+    
+      <div class="input-label-container">
+        <label for="imageLink">Image Link:</label>
+        <input id="imageLink" type="text" formControlName="tripImageLink" />
+      </div>
+      
+      <button class="button-accent" type="submit" (click)="submitForm()">Submit</button>
+      <div class="drip-1"></div>
+      <div class="drip-2"></div>
+      <div class="drip-3"></div>
+      <p *ngIf="showError">Some data is wrong!</p>
+      <p *ngIf="showOk">Trip Added!</p>
+    </form>
+</div>

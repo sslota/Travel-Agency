@@ -1,0 +1,128 @@
+<div class="navbar-container" [class.navbar-scrolled]="pageScrolled==true">
+  <div class="navbar-left">
+    <a routerLink="/" (click)="scrollToTop();">
+      <div class="logo">
+        <h1 [class.navbar-logo-scrolled]="pageScrolled==true">
+          Kolunios Journey
+        </h1>
+      </div>
+    </a>
+    <div class="menu-items" >
+
+      <a *ngIf="isAdmin()" (click)="scrollToTop();" routerLink="admin">
+        <div class="menu-item" [class.navbar-item-scrolled]="pageScrolled==true" routerLinkActive="active-link">
+          Admin Panel
+        </div>
+      </a>
+
+      <a *ngIf="isManager()" (click)="scrollToTop();" routerLink="manager">
+        <div class="menu-item" [class.navbar-item-scrolled]="pageScrolled==true" routerLinkActive="active-link">
+          Manager Panel
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="menu-items">
+    <a routerLink="/panel" (click)="scrollToTop();" *ngIf="auth.userData != null">
+      <div class="menu-item" [class.navbar-item-scrolled]="pageScrolled==true" routerLinkActive="active-link">
+        {{auth.userData.email}}
+      </div>
+    </a>
+
+    <div [class.navbar-item-scrolled]="pageScrolled==true" *ngIf="auth.userData != null">
+    </div>
+    <a routerLink="/register" (click)="scrollToTop();" *ngIf="auth.userData == null">
+      <div class="menu-item"[class.navbar-item-scrolled]="pageScrolled==true"  routerLinkActive="active-link">
+        Register
+      </div>
+    </a>
+
+    <a routerLink="/login" (click)="scrollToTop();" *ngIf="auth.userData == null">
+      <div class="menu-item" [class.navbar-item-scrolled]="pageScrolled==true" routerLinkActive="active-link">
+        Log in
+      </div>
+    </a>
+
+    <div class="menu-item" (click)="scrollToTop();" [class.navbar-item-scrolled]="pageScrolled==true" (click)="auth.signOut()" *ngIf="auth.userData != null">
+      Log out
+    </div>
+
+    <a routerLink="/trips" (click)="scrollToTop();">
+      <div class="menu-item" [class.navbar-item-scrolled]="pageScrolled==true" routerLinkActive="active-link">Trips</div>
+    </a>
+
+    <a routerLink="/bookingcondistions" (click)="scrollToTop();">
+      <div class="menu-item" [class.navbar-item-scrolled]="pageScrolled==true" routerLinkActive="active-link">Booking Conditions</div>
+    </a>
+
+    <a routerLink="/privacypolicy" (click)="scrollToTop();">
+      <div class="menu-item" [class.navbar-item-scrolled]="pageScrolled==true" routerLinkActive="active-link">Privacy Policy</div>
+    </a>
+  </div>
+  <div class="hamburger-button hidden">
+    <button type="button" (click)="hamburgerHandler()">
+      <span [class.anim-1]="hamburgerOpened == true"></span>
+      <span [class.anim-2]="hamburgerOpened == true"></span>
+      <span [class.anim-3]="hamburgerOpened == true"></span>
+    </button>
+  </div>
+  <div class="menu-ham-items" [class.hidden]="hamburgerOpened == false" [class.visible]="hamburgerOpened == true" [class.rolled-in]="hamburgerOpened == true" [class.rolled-out]="hamburgerOpened == false">
+    <div class="wrapper">
+      <a routerLink="/panel" (click)="optionChosen();scrollToTop();" *ngIf="auth.userData != null" routerLinkActive="active-link">
+        <div class="menu-item">
+          {{auth.userData.email}}
+        </div>
+      </a>
+
+      <a *ngIf="isAdmin() == true" (click)="optionChosen();scrollToTop();" routerLink="admin"
+        routerLinkActive="active-link2">
+        <div class="menu-item" routerLinkActive="active-link">
+          Admin Panel
+        </div>
+      </a>
+
+      <a *ngIf="isManager() == true" (click)="optionChosen();scrollToTop();" routerLink="manager"
+        routerLinkActive="active-link2">
+        <div class="menu-item" routerLinkActive="active-link">
+          Manager Panel
+        </div>
+      </a>
+
+      <a routerLink="/register" (click)="optionChosen();scrollToTop();" *ngIf="auth.userData == null">
+        <div class="menu-item" routerLinkActive="active-link">
+          Register
+        </div>
+      </a>
+
+      <a routerLink="/login" (click)="optionChosen();scrollToTop();" *ngIf="auth.userData == null">
+        <div class="menu-item" routerLinkActive="active-link">
+          Log in
+        </div>
+      </a>
+
+      <div class="menu-item" (click)="auth.signOut(); optionChosen();scrollToTop();" *ngIf="auth.userData != null">
+        Log out
+      </div>
+
+      <a routerLink="/trips">
+        <div class="menu-item" routerLinkActive="active-link" (click)="optionChosen();scrollToTop();">
+          Trips
+        </div>
+      </a>
+
+      <a routerLink="/bookingcondistions">
+        <div class="menu-item" routerLinkActive="active-link" (click)="optionChosen();scrollToTop();">
+          Booking Conditions
+        </div>
+      </a>
+      
+      <a routerLink="/privacypolicy">
+        <div class="menu-item" routerLinkActive="active-link" (click)="optionChosen();scrollToTop();">
+          Privacy Policy
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

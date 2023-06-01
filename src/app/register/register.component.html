@@ -1,0 +1,19 @@
+<div class="form-container">
+  <h2>Register</h2>
+  <form [formGroup]="regForm">
+
+    <div class="left-right">
+      <label for="name">Email</label>
+      <input id="name" type="text" formControlName="login" />
+    </div>
+
+    <div class="left-right">
+      <label for="type">Password</label>
+      <input id="password" type="password" formControlName="password" />
+    </div>
+
+  </form>
+  <button type="submit" class="button-accent" (click)="submitForm()">Confirm</button>
+  <p *ngIf="showError">Some data is wrong!</p>
+  <p *ngIf="showOk">Registered succesfully!</p>
+</div>

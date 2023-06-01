@@ -1,0 +1,9 @@
+<div class="rate">
+  <p #rate class="like" (click)="ratingApplied('+')">👍</p>
+  <p class="amount positive">{{tripLikes}}</p>
+  <p #rate class="dislike" (click)="ratingApplied('-')">👎</p>
+  <p class="amount negative">{{tripDislikes}}</p>
+  <p class="summary" *ngIf="tripDislikes+tripLikes!=0" [ngStyle]="{
+      'color': (tripLikes/(tripDislikes+tripLikes)>=0.50) ? 'lime' : 'rgb(150, 0, 0)'}">
+    {{tripLikes/(tripDislikes+tripLikes)*100 | number: '1.0-0'}}%</p>
+</div>

@@ -1,0 +1,54 @@
+h1, h2 {
+  margin: 0.4em;
+  text-align: center;
+  cursor: default;
+}
+
+.inline {
+  display: flex;
+  flex-direction: row;
+}
+
+button {
+  padding: 0.2em;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left, .right {
+  background-color: var(--colorBackground);
+  border-radius: 25px;
+}
+
+table, th, td {
+  background-color: var(--colorAccent);
+  border-radius: 25px;
+  padding: 0.2em;
+  cursor: default;
+}
+
+table {
+  margin-bottom: 3em;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 1539px) {
+  h1 {
+    padding-top: 3em;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  h1 {
+    padding-top: 0;
+    margin: 0;
+  }
+}

@@ -1,0 +1,22 @@
+<div class="form-container">
+  <h2>Add Review</h2>
+  <h1 *ngIf="isBanned()" class="errors">As banned user you can not add review</h1>
+
+  <ng-container *ngIf="!isBanned()">
+
+    <form [formGroup]="addReview">
+      <label for="name">Nickname</label>
+      <input id="name" type="text" formControlName="nickname" />
+      <label for="date">Purchase Date</label>
+      <input id="date" type="date" formControlName="date" />
+      <label for="review">Review Content</label>
+      <textarea id="review" type="text" formControlName="review" cols=60 rows="5"></textarea>
+      <button type="submit" [disabled]="!addReview.valid" (click)="submitForm()">Add Review</button>
+    </form>
+    <div class="errors">
+      <div *ngIf="!addReview.get('nickname')!.valid">Nickname must be at least 2 characters long.</div>
+      <div *ngIf="!addReview.get('date')!.valid">Please provide correct date.</div>
+      <div *ngIf="!addReview.get('review')!.valid">The review must contain between 50 and 500 words.</div>
+    </div>
+  </ng-container>
+</div>

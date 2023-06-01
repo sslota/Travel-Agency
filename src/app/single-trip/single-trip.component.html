@@ -1,0 +1,43 @@
+<div class="inner">
+    <a routerLink="/trips">
+        <div class="button-accent fixed-bottom-left">
+            Back To Trips
+        </div>
+    </a>
+</div>
+
+<ng-container *ngIf="trip.length>0">
+    <div class="wrapper">
+        <div class="in-cols">
+            <div class="center">
+                <img src={{trip[0].imageLink[selected]}}>
+                <div class="photoselect">
+                    <span class="button-accent" (click)="nextPhoto()"><</span>
+                    <span class="button-accent" (click)="previousPhoto()">></span>
+                </div>
+            </div>
+            <div>
+                <h1>{{trip[0].name}}</h1>
+                <h2 class="shdesc">Destination: {{ trip[0].destination}}</h2>
+                <h2>{{ trip[0].shortDesc }}</h2>
+                <h2 class="date">Date: {{ trip[0].startDate }} - {{ trip[0].endDate }}</h2>
+                <h2>Available for: <span class="price">${{trip[0].price}}</span></h2>
+                <app-trip-rating (ratingChanged)="ratingEventHandler(trip[0], $event)" [tripLikes]="trip[0].likes"
+                [tripDislikes]="trip[0].dislikes"></app-trip-rating>
+            </div>
+        </div>
+
+    </div>
+    <ng-container *ngIf="reviews.length > 0">
+        <h2>Reviews</h2>
+        <div class="review" *ngFor="let review of reviews">
+            <span class="strong">Nickname: </span><span>{{review.nick}}</span>
+            <p></p>
+            <span class="strong">Date: </span><span>{{review.date}}</span>
+            <p></p>
+            <span class="strong">Review: </span><span>{{review.review}}</span>
+        </div>
+    </ng-container>
+
+    <app-review (newReviewEvent)="addReview($event)"></app-review>
+</ng-container>

@@ -1,0 +1,82 @@
+<ng-container *ngIf="isAdmin()">
+    <h1>Admin Panel</h1>
+    <h3>Current Persistence Mode: {{ selectedPersistence }}</h3>
+    <div class="inline">
+        <h3>Choose Persistence Mode: </h3>
+        <select [(ngModel)]="selectedPersistence" (ngModelChange)="chosenPersistence()">
+            <option>LOCAL</option>
+            <option>SESSION</option>
+            <option>NONE</option>
+        </select>
+    </div>
+
+    <h2>Manage Users</h2>
+    <ng-container *ngIf="users != []">
+        <table class="table-desktop">
+            <tr>
+                <th>Email</th>
+                <th>ID</th>
+                <th class="additional-info">Guest</th>
+                <th class="additional-info">Client</th>
+                <th class="additional-info">Manager</th>
+                <th class="additional-info">Admin</th>
+                <th class="additional-info">Banned</th>
+                <th>Toggle Roles</th>
+            </tr>
+            
+            <tr *ngFor="let user of users">
+                <td>{{ user.email }}</td>
+                <td>{{ user.uid }}</td>
+                <td class="additional-info">{{ user.roles.guest }}</td>
+                <td class="additional-info">{{ user.roles.client }}</td>
+                <td class="additional-info">{{ user.roles.manager }}</td>
+                <td class="additional-info">{{ user.roles.admin }}</td>
+                <td class="additional-info">{{ user.roles.banned }}</td>
+                <td class="btn-container">
+                    <button (click)="setRole(user.uid, 'banned', !user.roles.banned)"
+                        [ngClass]="{ 'has-role': user.roles.banned == true }">
+                        banned
+                    </button>
+                    <button (click)="setRole(user.uid, 'manager', !user.roles.manager)"
+                        [ngClass]="{ 'has-role': user.roles.manager == true }">
+                        manager
+                    </button>
+                    <button (click)="setRole(user.uid, 'admin', !user.roles.admin)"
+                        [ngClass]="{ 'has-role': user.roles.admin == true }">
+                        admin
+                    </button>
+                    <button (click)="setRole(user.uid, 'client', !user.roles.client)"
+                        [ngClass]="{ 'has-role': user.roles.client == true }">
+                        client
+                    </button>
+                </td>
+            </tr>
+        </table>
+
+        <div class="table-mobile">
+            <div *ngFor="let user of users" class="user-single-info">
+                <p><strong>Email: </strong>{{ user.email }}</p>
+                <p><strong>User ID: </strong>{{ user.uid }}</p>
+                <div class="btn-container">
+                    <button (click)="setRole(user.uid, 'banned', !user.roles.banned)"
+                        [ngClass]="{ 'has-role': user.roles.banned == true }">
+                        banned
+                    </button>
+                    <button (click)="setRole(user.uid, 'manager', !user.roles.manager)"
+                        [ngClass]="{ 'has-role': user.roles.manager == true }">
+                        manager
+                    </button>
+                    <button (click)="setRole(user.uid, 'admin', !user.roles.admin)"
+                        [ngClass]="{ 'has-role': user.roles.admin == true }">
+                        admin
+                    </button>
+                    <button (click)="setRole(user.uid, 'client', !user.roles.client)"
+                        [ngClass]="{ 'has-role': user.roles.client == true }">
+                        client
+                    </button>
+                </div>
+                <span class="line"></span>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>

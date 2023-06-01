@@ -1,0 +1,32 @@
+<ng-container *ngIf="isManager()">
+  <h1>Manager Panel</h1>
+
+  <h2>Manage Trips</h2>
+  <ng-container *ngIf="trips != []">
+    <div class="center">
+
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Trip Name</th>
+          <th>Actions</th>
+        </tr>
+        
+        <tr *ngFor="let trip of trips">
+          <td class="left">
+            {{trip.id}}
+          </td>
+          <td class="right">
+            {{trip.name}}
+          </td>
+          <td class="actions">
+            <button (click)="confirmDelete(trip.id)" class="button-accent">Delete</button>
+            <button routerLink="modify/{{trip.id}}" class="button-accent">Modify</button>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+  </ng-container>
+  <app-trip-add></app-trip-add>
+</ng-container>

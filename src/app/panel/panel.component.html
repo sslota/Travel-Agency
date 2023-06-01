@@ -1,0 +1,63 @@
+<div class="center">
+    <div class="horizontal">
+        <div class="section">
+            <h2>User Information</h2>
+            <ul>
+                <li><strong>Email: </strong>{{auth.userData.email}}</li>
+                <li><strong>Email confirmed: </strong>{{auth.userData.emailVerified}}</li>
+                <li><strong>User ID: </strong>{{auth.userData.uid}} </li>
+                <li><strong>Account created: </strong>{{auth.userData.metadata.creationTime}}</li>
+                <li><strong>Last successfull log in: </strong>{{auth.userData.metadata.lastSignInTime}} </li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Your Privileges</h2>
+            <ul>
+                <li><strong>Guest: </strong>{{auth.userRoles.guest}}</li>
+                <li><strong>Client: </strong>{{auth.userRoles.client}}</li>
+                <li><strong>Manager: </strong>{{auth.userRoles.manager}}</li>
+                <li><strong>Admin: </strong>{{auth.userRoles.admin}}</li>
+                <li><strong>Banned: </strong>{{auth.userRoles.banned}}</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>Order History</h2>
+    <table>
+        <div class="filter">
+            <p>
+                Filter: 
+            </p>
+            <select [(ngModel)]="selectedStatus">
+                <option value="all">All</option>
+                <option value="Trip is over">Trip is over</option>
+                <option value="Happening now">Happening now</option>
+                <option value="Will start soon">Will start soon</option>
+            </select>
+        </div>
+        <tr>
+            <th>Purchase Date</th>
+            <th>|</th>
+            <th>Items</th>
+            <th>|</th>
+            <th>Status</th>
+        </tr>
+        
+        <ng-container *ngIf="orderHistory != undefined">
+            <ng-container *ngIf="orderHistoryIds.length > 0 && tripsArr.length>0">
+                <ng-container *ngFor="let orderId of orderHistoryIds">
+                    <ng-container *ngIf="selectedStatus === 'all' || getStatus(orderId) === selectedStatus">
+                        <tr>
+                            <td>{{ orderHistory[orderId].date }}</td>
+                            <td></td>
+                            <td>{{ getTripNames(orderId) }}</td>
+                            <td></td>
+                            <td>{{ getStatus(orderId) }}</td>
+                        </tr>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+        </ng-container>
+    </table>
+</div>

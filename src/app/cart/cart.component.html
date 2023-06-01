@@ -1,0 +1,19 @@
+<ng-container *ngIf="cartService.cart.length > 0">
+    <div class="center">
+        <div *ngFor="let item of cartService.cart; index as idx">
+            <div class="left-right">
+                <h3>{{idx+1}}.</h3>
+                <h3>{{item.name}} - ${{item.price}}</h3>
+                <div class="button-accent" (click)="removeClick(item)">Remove</div>
+            </div>
+        </div>
+        <button (click)="order()" class="button-accent ">Confirm your order for ${{getCartSum() | number: '1.0-2'}} </button>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="cartService.cart.length == 0">
+    <h1>cart is empty</h1>
+    <a routerLink="/trips" class="accented">
+        <h1>Order now</h1>
+    </a>
+</ng-container>

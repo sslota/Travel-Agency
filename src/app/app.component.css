@@ -1,0 +1,27 @@
+.centered {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  margin: 8em 2em;
+  min-height:80vh
+}
+
+nav {
+  position: fixed;
+  -webkit-backface-visibility: hidden;
+  backface-visibility:hidden;
+  width:100%;
+  top: 0;
+  left:0;
+  z-index: 1;
+  height: auto;
+}
+
+.fbody {
+  min-height:100vh;
+  display:flex; 
+  flex-direction:column; 
+}

@@ -1,0 +1,53 @@
+.rate {
+  display: flex;
+  flex-direction: row;
+  min-height: 20px;
+}
+
+p {
+  margin: 0.1em;
+  padding: 0.1em;
+  font-size: 1.5em;
+}
+
+.like, .dislike {
+  user-select: none;
+}
+
+.positive {
+  color: lime;
+  font-weight: bold;
+}
+
+.negative {
+  color: rgb(150, 0, 0);
+  font-weight: bold;
+}
+
+.like:hover, .dislike:hover {
+  cursor: pointer;
+}
+
+.like:hover {
+  border-radius: 50%;
+  -webkit-box-shadow: 0px 0px 50px 10px lime;
+  -moz-box-shadow: 0px 0px 50px 10px lime;
+  box-shadow: 0px 0px 50px 10px lime;
+}
+
+.dislike:hover {
+  border-radius: 50%;
+  -webkit-box-shadow: 0px 0px 50px 10px red;
+  -moz-box-shadow: 0px 0px 50px 10px red;
+  box-shadow: 0px 0px 50px 10px red;
+}
+
+.summary {
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 516px) {
+  p {
+    font-size: 1em;
+  }
+}

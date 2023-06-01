@@ -1,0 +1,48 @@
+<div class="form-container">
+  <h2>Modify Trip</h2>
+  <form [formGroup]="tripModifyForm">
+    <div class="input-label-container">
+      <label for="name">Trip Name:</label>
+      <input placeholder="{{ trip.name }}" id="name" type="text" formControlName="tripName" />
+    </div>
+
+    <div class="input-label-container">
+      <label for="destination">Destination:</label>
+      <input placeholder="{{ trip.destination }}" id="destination" type="text" formControlName="tripDestination" />
+    </div>
+
+    <div class="input-label-container">
+      <label for="startDate">Start Date:</label>
+      <input id="startDate" type="date" formControlName="tripStartDate" />
+    </div>
+
+    <div class="input-label-container">
+      <label for="endDate">End Date:</label>
+      <input id="endDate" type="date" formControlName="tripEndDate" />
+    </div>
+
+    <div class="input-label-container">
+      <label for="maxSeats">Available Seats:</label>
+      <input placeholder="{{ trip.maxSeats }}" id="maxSeats" type="text" formControlName="tripMaxSeats" />
+    </div>
+
+    <div class="input-label-container">
+      <label for="price">Price:</label>
+      <input placeholder="{{ trip.price}}" id="price" type="text" formControlName="tripPrice" />
+    </div>
+
+    <div class="input-label-container">
+      <label for="shortDesc">Description:</label>
+      <input placeholder="{{ trip.shortDesc }}" id="shortDesc" type="text" formControlName="tripShortDesc" />
+    </div>
+
+    <div class="input-label-container">
+      <label for="imageLink">Image Link:</label>
+      <input placeholder="{{ trip.imageLink }}" id="imageLink" type="text" formControlName="tripImageLink" />
+    </div>
+
+    <button type="submit" (click)="submitForm()" class="button-accent">Submit</button>
+    <p *ngIf="showError">Some data is wrond!</p>
+    <p *ngIf="showOk">Trip Modified!</p>
+  </form>
+</div>

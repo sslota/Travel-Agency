@@ -1,0 +1,99 @@
+<a routerLink="/cart" class="button-accent cart">
+  <div class="valueAndTrips">
+    <img class="cartImg" src="assets/basket1.png" alt="basket icon" srcset="">
+    <div>
+      <p>{{ getOrderedAmount(trips) }} trips </p>
+      <p>cart value ${{getCartValue() | number: '1.0-2'}}</p>
+    </div>
+  </div>
+</a>
+
+<!-- <div class="order-details">
+  <h2 [ngStyle]="{
+      'background-color': getOrderedAmount(trips) > 10 ? '#254EAF' : '#FE963F'
+    }">
+    Booked Trips: {{ getOrderedAmount(trips) }} Value: ${{getCartValue() | number: '1.0-2'}}
+  </h2>
+  <button id="basketvalue" routerLink="/cart">
+    <div class="basketinfo">
+      <img id="basketicon" src="assets/basket.png" alt="basket_icon" srcset>
+      <div id="valueandtrips">
+        <p>{{getOrderedAmount(trips)}} trips</p>
+        <p>basket value {{ getBasketValue(trips) }}$</p>
+      </div>
+    </div>
+  </button>
+</div> -->
+
+<div class="trips" *ngIf="trips != []">
+
+  <!-- <div class="trip" [ngClass]="{
+    'most-expensive': trip.price == getMaxPriceTrip(trips).price,
+    'least-expensive': trip.price == getMinPriceTrip(trips).price
+  }" *ngFor="let trip of trips"> -->
+
+  <!-- <div class="trip-container">
+    <img class="status" src="{{ getTripStatus(trip) }}" *ngIf="getTripStatus(trip) !== ''">
+    <a routerLink="/trips/{{trip.id}}"><img src="{{ trip.imageLink[0] }}" alt="{{ trip.name }}" /></a>
+  </div> -->
+
+  <div class="trip" *ngFor="let trip of trips; index as idx">
+    <div class="clickable" routerLink="/trips/{{trip.id}}" (click)="alertLogIn();$event.stopPropagation()">
+      <div class="trip-inner">
+        <img src="{{ trip.imageLink[0] }}" alt="{{ trip.name }}" />
+        <h3 class="truncate" >{{ trip.name | uppercase }}</h3>
+        <p class="destination">{{ trip.destination | uppercase }}</p> 
+        <p class="date">
+          {{ trip.startDate }} - {{trip.endDate }}
+        </p>
+        <div class="bottom">
+
+          <!-- <div class="bottom">
+            <span class="price">{{ trip.currency }}{{ trip.price }}</span>
+            <div class="btn-container">
+              <div *ngIf="trip.amount < trip.maxSeats" class="addBasket btn" (click)="addClick(trip)">
+                ➕
+              </div>
+              <div class="removeBasket btn" (click)="removeClick(trip)">
+                ➖
+              </div>
+            </div>
+          </div> -->
+
+          <span class="price">{{ trip.currency }}{{ trip.price }}</span>
+        </div>
+        <div *ngIf="countTripInCart(trip) < trip.maxSeats && trip.maxSeats - countTripInCart(trip) > 3"
+          class="button-accent button-accent-green" (click)="addClick(trip);$event.stopPropagation()">
+          Add to cart
+        </div>
+        <div *ngIf="countTripInCart(trip) >= trip.maxSeats" class="button-accent button-disabled"
+          (click)="$event.stopPropagation()">
+          No more seats!
+        </div>
+        <div *ngIf="trip.maxSeats - countTripInCart(trip) <= 3 && trip.maxSeats - countTripInCart(trip) > 0"
+          class="button-accent button-accent-green" (click)="addClick(trip); $event.stopPropagation()">
+          Only {{ trip.maxSeats - countTripInCart(trip) }} left!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="bottom-info">
+    <app-trip-rating (ratingChanged)="ratingEventHandler(trip, $event)" [tripLikes]="trip.likes"
+      [tripDislikes]="trip.dislikes"></app-trip-rating>
+    <p class="amount-info">Booked: {{ trip.amount }}</p>
+  </div>
+  <p *ngIf="trip.maxSeats - trip.amount <= 3 && trip.maxSeats - trip.amount > 1" class="bottom-info-text">
+    Only {{ trip.maxSeats - trip.amount }} seats left!
+  </p>
+  <p *ngIf="trip.maxSeats - trip.amount <= 1 && trip.maxSeats - trip.amount >= 1" class="bottom-info-text">
+    Only {{ trip.maxSeats - trip.amount }} seat left!
+  </p>
+  <p *ngIf="trip.maxSeats - trip.amount < 1" class="bottom-info-text">
+    No more seats!
+  </p>
+  <p *ngIf="trip.maxSeats - trip.amount > 3" class="bottom-info-text"></p>
+  <div class="deleteBtn" (click)="deleteTrip(trip.id)">Remove Trip</div>
+</div> -->
+
+</div>
